@@ -25,7 +25,7 @@ class SensorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -51,4 +51,12 @@ class SensorController extends Controller
     {
         //
     }
+
+    public function showDashboard()
+    {
+        $latestData = Sensor::latest()->first();
+
+        return view('dashboard', compact('latestData'));
+    }
+    
 }

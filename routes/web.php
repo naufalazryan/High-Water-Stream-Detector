@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SensorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SensorDataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,11 +44,15 @@ Route::get('/hujan', function () {
     return view('hujan');
 })->middleware(['auth', 'verified'])->name('hujan');
 
+Route::get('/dashboard', [SensorController::class, 'showDashboard'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/dashboard', [SensorDataController::class, 'index'])->name('dashboard');
+
 
 require __DIR__ . '/auth.php';

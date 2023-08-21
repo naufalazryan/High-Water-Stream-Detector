@@ -31,3 +31,4 @@ Route::get('/',function(){
 Route::get('sensor',[SensorController::class,'index'])->middleware('auth:sanctum');
 Route::post('registerUser',[AuthController::class,'registerUser']);
 Route::post('loginUser',[AuthController::class,'loginUser']);
+
