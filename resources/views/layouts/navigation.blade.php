@@ -13,20 +13,22 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('messages.dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('banjir')" :active="request()->routeIs('banjir')">
-                        {{ __('Banjir') }}
+                        {{ __('messages.flood') }}
                     </x-nav-link>
                     <x-nav-link :href="route('suhu')" :active="request()->routeIs('suhu')">
-                        {{ __('Suhu') }}
+                        {{ __('messages.temp') }}
                     </x-nav-link>
                     <x-nav-link :href="route('kelembapan')" :active="request()->routeIs('kelembapan')">
-                        {{ __('Kelembapan') }}
+                        {{ __('messages.humidity') }}
                     </x-nav-link>
                     <x-nav-link :href="route('hujan')" :active="request()->routeIs('hujan')">
-                        {{ __('Hujan') }}
+                        {{ __('messages.rain') }}
                     </x-nav-link>
+                    
+
                 </div>
             </div>
 
@@ -43,27 +45,44 @@
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
                     </x-slot>
 
+                    <div class="relative">
+  <button class="flex items-center space-x-2 border border-gray-300 px-3 py-2 rounded-lg focus:outline-none">
+    <img src="flag_usa.png" alt="USA Flag" class="h-5 w-auto">
+    <span>English</span>
+    <svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+  </button>
+  <ul class="absolute mt-2 py-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 hidden">
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Spanish</a></li>
+    <!-- Add more languages here -->
+  </ul>
+</div>
+
+
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profil') }}
+                            {{ __('messages.profile') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();">
-                                {{ __('Keluar') }}
+                                {{ __('messages.logout') }}
                             </x-dropdown-link>
                         </form>
                         
                     </x-slot>
+                    
                 </x-dropdown>
             </div>
 
@@ -87,19 +106,19 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('messages.dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('banjir')" :active="request()->routeIs('banjir')">
-                {{ __('Banjir') }}
+                {{ __('messages.flood') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('suhu')" :active="request()->routeIs('suhu')">
-                {{ __('Suhu') }}
+                {{ __('messages.temp') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelembapan')" :active="request()->routeIs('kelembapan')">
-                {{ __('Kelembapan') }}
+                {{ __('messages.humidity') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('hujan')" :active="request()->routeIs('hujan')">
-                {{ __('Hujan') }}
+                {{ __('messages.rain') }}
             </x-responsive-nav-link>
 
         </div>
@@ -113,7 +132,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profil') }}
+                    {{ __('messages.profile') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -123,7 +142,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                         onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Keluar') }}
+                        {{ __('messages.logout') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

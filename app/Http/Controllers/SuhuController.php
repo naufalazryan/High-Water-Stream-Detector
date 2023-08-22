@@ -9,7 +9,7 @@ class SuhuController extends Controller
 {
     public function index(){
 
-        $suhu = DataSuhu::all();
-        return view('suhu', compact('suhu'));
+        $suhu = DataSuhu::select('nilai_suhu','keadaan_suhu')->get();
+        return view('suhu', ['suhu' => $suhu]);
     }
 }
