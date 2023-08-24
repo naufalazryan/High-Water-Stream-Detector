@@ -7,6 +7,7 @@ return [
     'flood' => 'Banjir',
     'temp' => 'Suhu',
     'humidity' => 'Kelembapan',
+    'rain' => 'Hujan',
     'profile' => 'Profil',
     'logout' => 'Keluar',
     'floodValue' => 'Nilai Banjir',
@@ -36,6 +37,22 @@ return [
     'deleteAccount' => 'Hapus Akun',
     'deleteAccountDesc' => 'Setelah akun Anda dihapus, semua sumber daya dan datanya akan dihapus secara permanen. Sebelum menghapus akun anda, harap unduh data atau informasi apa pun yang ingin anda simpan.',
     'cancel' => 'Batalkan',
+    'english' => 'Bahasa Inggris',
+    'indonesia' => 'Bahasa Indonesia',
+
+    'language' => 'Bahasa',
+
+    'floodDesc' => 'Berikut adalah nilai hasil sensor banjir',
+    'floodDesc2' => 'berikut adalah adalah nilai hasil keadaan banjir',
+
+    'tempDesc' => 'berikut adalah adalah nilai hasil sensor temperatur',
+    'floodDesc2' => 'berikut adalah adalah nilai hasil keadaan temperatur',
+
+    'humidityDesc' => 'berikut adalah adalah nilai hasil sensor kelembapan',
+    'humidityDesc2' => 'berikut adalah adalah nilai hasil keadaan kelembapan',
+
+    'rainDesc' => 'berikut adalah adalah nilai hasil sensor hujan',
+    'rainDesc2' => 'berikut adalah adalah nilai hasil keadaan hujan',
 ]
 
 ?>

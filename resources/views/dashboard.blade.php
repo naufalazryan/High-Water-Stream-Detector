@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="container mx-auto p-6">
-        <div class="bg-white rounded-lg shadow overflow-x-auto">
+    <div class="container mx-auto p-6 overflow-x-auto">
+        <div class="bg-white rounded-lg shadow overflow-x-auto w-full h-full md:w-full">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-black text-center">
                     <tr>
@@ -41,13 +41,11 @@
                     <!-- Add more rows as needed -->
                 </tbody>
             </table>
-            
         </div>
-        <div class="join ml-[100px]">
-            <button class="join-item btn">«</button>
-            <button class="join-item btn">Page 22</button>
-            <button class="join-item btn">»</button>
-          </div>
+        
+        <div class="mt-4">
+            {{ $data_sensor->links() }}
+        </div>
     </div>
     
 </x-app-layout>

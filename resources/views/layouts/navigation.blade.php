@@ -27,46 +27,100 @@
                     <x-nav-link :href="route('hujan')" :active="request()->routeIs('hujan')">
                         {{ __('messages.rain') }}
                     </x-nav-link>
-                    
 
+                    <div class="relative inline-block text-left">
+                        <button type="button"
+                            class="inline-flex justify-center text-gray-500 w-30 rounded-md mt-[15px] ml-[410px] hover:text-gray-700 px-4 py-2 bg-white text-sm font-medium hover:bg-gray-50 focus:outline-none focus:ring-offset-1"
+                            id="dropdown-button" aria-haspopup="true" aria-expanded="true">Language
+                            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 hidden"
+                            id="dropdown-menu">
+                            <div class="py-1" role="menu" aria-orientation="vertical"
+                                aria-labelledby="dropdown-button">
+
+                                <a href="{{ url('/en') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    role="menuitem">
+                                    <img class="-mr-1 ml-2 h-5 w-5 inline mr-3" src="{{ asset('images/uk.png') }}"</img>
+                                    {{ __('messages.english') }}
+                                </a>
+                                <a href="{{ url('/id') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                                    role="menuitem">
+                                    <img class="-mr-1 ml-2 h-5 w-5 inline mr-3"
+                                        src="{{ asset('images/indonesia.png') }}" </img>
+                                    {{ __('messages.indonesia') }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        const dropdownButton = document.getElementById('dropdown-button');
+                        const dropdownMenu = document.getElementById('dropdown-menu');
+                        let isDropdownOpen = false;
+                      
+                        dropdownButton.addEventListener('click', () => {
+                          isDropdownOpen = !isDropdownOpen;
+                          if (isDropdownOpen) {
+                            dropdownMenu.classList.remove('hidden');
+                            dropdownMenu.classList.add('block');
+                            setTimeout(() => {
+                              dropdownMenu.classList.remove('opacity-0', 'scale-95');
+                              dropdownMenu.classList.add('opacity-100', 'scale-100','transition','duration','ease-in-out');
+                            }, 90);
+                          } else {
+                            dropdownMenu.classList.remove('opacity-100', 'scale-100');
+                            dropdownMenu.classList.add('opacity-0', 'scale-95');
+                            setTimeout(() => {
+                              dropdownMenu.classList.remove('block');
+                              dropdownMenu.classList.add('hidden');
+                            }, 200);
+                          }
+                        });
+                      
+                        // Close the dropdown if the user clicks outside
+                        window.addEventListener('click', (event) => {
+                          if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                            isDropdownOpen = false;
+                            dropdownMenu.classList.remove('opacity-100', 'scale-100');
+                            dropdownMenu.classList.add('opacity-0', 'scale-95');
+                            setTimeout(() => {
+                              dropdownMenu.classList.remove('block');
+                              dropdownMenu.classList.add('hidden');
+                            }, 300);
+                          }
+                        });
+                      </script>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">   
+                <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-offset-1 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
                     </x-slot>
-
-                    <div class="relative">
-  <button class="flex items-center space-x-2 border border-gray-300 px-3 py-2 rounded-lg focus:outline-none">
-    <img src="flag_usa.png" alt="USA Flag" class="h-5 w-auto">
-    <span>English</span>
-    <svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
-      <path fill-rule="evenodd" d="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-    </svg>
-  </button>
-  <ul class="absolute mt-2 py-1 bg-white border border-gray-300 rounded-lg shadow-lg z-10 hidden">
-    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">English</a></li>
-    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Spanish</a></li>
-    <!-- Add more languages here -->
-  </ul>
-</div>
-
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
@@ -80,9 +134,9 @@
                                 {{ __('messages.logout') }}
                             </x-dropdown-link>
                         </form>
-                        
+
                     </x-slot>
-                    
+
                 </x-dropdown>
             </div>
 
@@ -147,5 +201,6 @@
                 </form>
             </div>
         </div>
+        
     </div>
 </nav>

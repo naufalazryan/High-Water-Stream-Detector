@@ -5,35 +5,45 @@
         </h2>
     </x-slot>
     <div class="flex justify-center">
-        <div class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
-            <div class="md:flex">
-                <div class="p-8 text-center">
-                    <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodValue') }}</div>
-                    @foreach ($banjir as $items => $item)
-                        @if ($items == 0)
-                            <div class="text-black ml-2">
-                                <span class="text-[40px]">{{ $item->nilai_banjir }}</span>
+        <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 ">
+
+            <div class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
+                <div class="md:flex">
+                    <div class="p-8 text-center">
+                        <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodValue') }}</div>
+                        
+                                <div class="text-black ml-2">
+                                    <span class="text-[40px]" id="nilaibanjir"></span>
                             </div>
-                        @endif
-                    @endforeach
-                    <p class="mt-5 text-slate-500">konsentrasi kandungan dari uap air yang ada di udara</p>
+                          
+                        <p class="mt-5 text-slate-500">{{ __('messages.floodDesc') }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
-            <div class="md:flex">
-                <div class="p-8 text-center">
-                    <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodCondition') }}</div>
-                    @foreach ($banjir as $items => $item)
-                        @if ($items == 0)
-                            <div class="text-black ml-2">
-                                <span class="text-[40px]">{{ $item->keadaan_banjir }}</span>
-                            </div>
-                        @endif
-                    @endforeach
-                    <p class="mt-5 text-slate-500">konsentrasi kandungan dari uap air yang ada di udara</p>
+            <div class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
+                <div class="md:flex">
+                    <div class="p-8 text-center">
+                        <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodCondition') }}</div>
+                        
+                                <div class="text-black ml-2">
+                                    <span class="text-[40px]" id="keadaanbanjir"></span>
+                                </div>
+                            
+                        <p class="mt-5 text-slate-500">{{ __('messages.floodDesc2') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setInterval(function() {
+                $("#nilaibanjir").load("{{ url('nilaibanjir') }}");
+                $("#keadaanbanjir").load("{{ url('keadaanbanjir') }}");
+            }, 1000);
+        });
+    </script>
 </x-app-layout>

@@ -35,7 +35,22 @@ return [
     'deleteAccount' => 'Delete Account',
     'deleteAccountDesc' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information you wish to keep.',
     'cancel' => 'Cancel',
+    'english' => 'English',
+    'indonesia' => 'Bahasa',
 
+    'language' => 'Language',
+
+    
+    'floodDesc' => 'Here is the value of the flood sensor results',
+    'floodDesc2' => 'Here is the state value of the flood results',
+    'tempDesc' => 'Here is the value of the temperature results',
+    'tempDesc2' => 'Here is the state value of the temperature results',
+
+    'humidityDesc' => 'Here is the value of the humidity results',
+    'humidityDesc2' => 'Here is the state value of the humidity results',
+
+    'rainDesc' => 'Here is the value of the rain results',
+    'rainDesc2' => 'Here is the state value of the rain results',
 ]
 
 ?>

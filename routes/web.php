@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BanjirController;
+use App\Http\Controllers\DataEntryController;
 use App\Http\Controllers\HujanController;
 use App\Http\Controllers\KelembapanController;
 use App\Http\Controllers\ProfileController;
@@ -31,9 +33,9 @@ Route::group(
     function () { //...
 
         /** Localized Routes here **/
-        Route::get('/', function () {
-            return view('dashboard');
-        });
+        // Route::get('/', function () {
+        //     return view('dashboard');
+        // });
 
         Route::get('/dashboard', function () {
             return view('dashboard');
@@ -67,12 +69,32 @@ Route::group(
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
 
-        Route::get('/dashboard', [SensorDataController::class, 'index'])->name('dashboard');
         Route::get('/', [SensorDataController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [SensorDataController::class, 'index'])->name('dashboard');
         Route::get('/suhu', [SuhuController::class, 'index'])->name('suhu');
         Route::get('/kelembapan', [KelembapanController::class, 'index'])->name('kelembapan');
         Route::get('/banjir', [BanjirController::class, 'index'])->name('banjir');
         Route::get('/hujan', [HujanController::class, 'index'])->name('hujan');
+        Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
+
+        
+        Route::get('/nilaibanjir',[BanjirController::class, 'nilaibanjir']);
+        Route::get('/keadaanbanjir',[BanjirController::class, 'keadaanbanjir']);
+
+        Route::get('/nilaisuhu',[SuhuController::class, 'nilaisuhu']);
+        Route::get('/keadaansuhu',[SuhuController::class, 'keadaansuhu']);
+
+        Route::get('/nilaikelembapan',[KelembapanController::class, 'nilaikelembapan']);
+        Route::get('/keadaankelembapan',[KelembapanController::class, 'keadaankelembapan']);
+
+        Route::get('/nilaihujan',[HujanController::class, 'nilaihujan']);
+        Route::get('/keadaanhujan',[HujanController::class, 'keadaanhujan']);
+
+
+
+
+        // routes/web.php
+
     }
 );
 

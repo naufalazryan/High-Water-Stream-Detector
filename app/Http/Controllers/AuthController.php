@@ -67,4 +67,5 @@ class AuthController extends Controller
             'token'=>$data_user_valid->createToken('api-sensor')->plainTextToken
         ]);
     }
+
 }
