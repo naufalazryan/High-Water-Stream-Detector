@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SensorDataController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SuhuController;
 use App\Models\DataSuhu;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -32,18 +33,14 @@ Route::group(
     ],
     function () { //...
 
-        /** Localized Routes here **/
-        // Route::get('/', function () {
-        //     return view('dashboard');
-        // });
+        // Localized Routes here **/
+        Route::get('/', function () {
+            return view('dashboard');
+         });
 
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->middleware(['auth', 'verified'])->name('dashboard');
-
-        Route::get('/welcome', function () {
-            return view('welcome');
-        })->middleware(['auth', 'verified'])->name('welcome');
 
         Route::get('/banjir', function () {
             return view('banjir');
@@ -61,12 +58,15 @@ Route::group(
             return view('hujan');
         })->middleware(['auth', 'verified'])->name('hujan');
 
+
+
         Route::get('/dashboard', [SensorController::class, 'showDashboard'])->name('dashboard');
 
         Route::middleware('auth')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+           
         });
 
         Route::get('/', [SensorDataController::class, 'index'])->name('dashboard');
@@ -75,8 +75,8 @@ Route::group(
         Route::get('/kelembapan', [KelembapanController::class, 'index'])->name('kelembapan');
         Route::get('/banjir', [BanjirController::class, 'index'])->name('banjir');
         Route::get('/hujan', [HujanController::class, 'index'])->name('hujan');
-        Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 
+        Route::get('lang.edit', [LanguageController::class, 'index'])->name('language');
         
         Route::get('/nilaibanjir',[BanjirController::class, 'nilaibanjir']);
         Route::get('/keadaanbanjir',[BanjirController::class, 'keadaanbanjir']);
@@ -90,10 +90,11 @@ Route::group(
         Route::get('/nilaihujan',[HujanController::class, 'nilaihujan']);
         Route::get('/keadaanhujan',[HujanController::class, 'keadaanhujan']);
 
+        Route::get('/search',[SensorDataController::class, 'search']);
+        Route::delete('/delete_data/{id}',[SensorDataController::class,'destroy']);
 
+        Route::get('/settings',[SettingsController::class, 'edit'])->name('settings.index');
 
-
-        // routes/web.php
 
     }
 );

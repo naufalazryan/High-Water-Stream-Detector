@@ -3,12 +3,13 @@
 return [
     'id' => 'ID',
     'site' => 'Project Building',
-    'dashboard' => 'Dashboard',
+    'dashboard' => 'Dasbor',
     'flood' => 'Banjir',
     'temp' => 'Suhu',
     'humidity' => 'Kelembapan',
     'rain' => 'Hujan',
     'profile' => 'Profil',
+    'setting' => 'Pengaturan',
     'logout' => 'Keluar',
     'floodValue' => 'Nilai Banjir',
     'floodCondition' => 'Keadaan Banjir',
@@ -23,6 +24,7 @@ return [
 
     'informationProfile' => 'Informasi Profil',
     'informationDesc' => 'Perbarui informasi profil dan alamat email akun Anda.',
+
     'name' => 'Nama',
     'email' => 'Email',
     'save' => 'Simpan',
@@ -53,6 +55,14 @@ return [
 
     'rainDesc' => 'berikut adalah adalah nilai hasil sensor hujan',
     'rainDesc2' => 'berikut adalah adalah nilai hasil keadaan hujan',
+
+    'delete' => 'Hapus',
+
+    'informationSettings' => 'Informasi Pengaturan',
+    'informationFloodSettings' => 'Setting Banjir',
+    'safe' => 'Aman',
+    'warning' => 'Waspada',   
+    'danger' => 'Bahaya',   
 ]
 
 ?>

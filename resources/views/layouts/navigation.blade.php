@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -29,9 +29,13 @@
                     </x-nav-link>
 
                     <div class="relative inline-block text-left">
+
                         <button type="button"
-                            class="inline-flex justify-center text-gray-500 w-30 rounded-md mt-[15px] ml-[410px] hover:text-gray-700 px-4 py-2 bg-white text-sm font-medium hover:bg-gray-50 focus:outline-none focus:ring-offset-1"
-                            id="dropdown-button" aria-haspopup="true" aria-expanded="true">Language
+                            class="inline-flex justify-center bg-gray-200 text-gray-500 w-30 rounded-md mt-[15px] hover:text-gray-700 px-4 py-2 text-sm font-medium hover:bg-gray-300 transition ease-in-out duration-300 focus:outline-none focus:ring-offset-1"
+                            id="dropdown-button" aria-haspopup="true" aria-expanded="true">
+                            <img class="-mr-1 ml-2 h-5 w-5 inline mr-3" src="{{ asset('images/translate.png') }}" </img>
+                            Language
+
                             <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                 fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd"
@@ -44,6 +48,8 @@
                             id="dropdown-menu">
                             <div class="py-1" role="menu" aria-orientation="vertical"
                                 aria-labelledby="dropdown-button">
+
+
 
                                 <a href="{{ url('/en') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
@@ -61,53 +67,55 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <script>
                         const dropdownButton = document.getElementById('dropdown-button');
                         const dropdownMenu = document.getElementById('dropdown-menu');
                         let isDropdownOpen = false;
-                      
+
                         dropdownButton.addEventListener('click', () => {
-                          isDropdownOpen = !isDropdownOpen;
-                          if (isDropdownOpen) {
-                            dropdownMenu.classList.remove('hidden');
-                            dropdownMenu.classList.add('block');
-                            setTimeout(() => {
-                              dropdownMenu.classList.remove('opacity-0', 'scale-95');
-                              dropdownMenu.classList.add('opacity-100', 'scale-100','transition','duration','ease-in-out');
-                            }, 90);
-                          } else {
-                            dropdownMenu.classList.remove('opacity-100', 'scale-100');
-                            dropdownMenu.classList.add('opacity-0', 'scale-95');
-                            setTimeout(() => {
-                              dropdownMenu.classList.remove('block');
-                              dropdownMenu.classList.add('hidden');
-                            }, 200);
-                          }
+                            isDropdownOpen = !isDropdownOpen;
+                            if (isDropdownOpen) {
+                                dropdownMenu.classList.remove('hidden');
+                                dropdownMenu.classList.add('block');
+                                setTimeout(() => {
+                                    dropdownMenu.classList.remove('opacity-0', 'scale-95');
+                                    dropdownMenu.classList.add('opacity-100', 'scale-100', 'transition', 'duration',
+                                        'ease-in-out');
+                                }, 90);
+                            } else {
+                                dropdownMenu.classList.remove('opacity-100', 'scale-100');
+                                dropdownMenu.classList.add('opacity-0', 'scale-95');
+                                setTimeout(() => {
+                                    dropdownMenu.classList.remove('block');
+                                    dropdownMenu.classList.add('hidden');
+                                }, 200);
+                            }
                         });
-                      
+
                         // Close the dropdown if the user clicks outside
                         window.addEventListener('click', (event) => {
-                          if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                            isDropdownOpen = false;
-                            dropdownMenu.classList.remove('opacity-100', 'scale-100');
-                            dropdownMenu.classList.add('opacity-0', 'scale-95');
-                            setTimeout(() => {
-                              dropdownMenu.classList.remove('block');
-                              dropdownMenu.classList.add('hidden');
-                            }, 300);
-                          }
+                            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                                isDropdownOpen = false;
+                                dropdownMenu.classList.remove('opacity-100', 'scale-100');
+                                dropdownMenu.classList.add('opacity-0', 'scale-95');
+                                setTimeout(() => {
+                                    dropdownMenu.classList.remove('block');
+                                    dropdownMenu.classList.add('hidden');
+                                }, 300);
+                            }
                         });
-                      </script>
+                    </script>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
+
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-offset-1 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            class="inline-flex items-center px-3 py-2 mt-1 border border-transparent text-sm leading-4 font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-offset-1 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
 
                             <div>{{ Auth::user()->name }}</div>
 
@@ -123,14 +131,21 @@
                     </x-slot>
 
                     <x-slot name="content">
+
                         <x-dropdown-link :href="route('profile.edit')">
+                            <img class=" ml-2 h-3 w-3 mr-2 mb-1 inline" src="{{ asset('images/user.png') }}" </img>
                             {{ __('messages.profile') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('settings.index')">
+                            <img class=" ml-2 h-3 w-3 mr-2 mb-1 inline" src="{{ asset('images/settings.png') }}" </img>
+                            {{ __('messages.setting') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();">
+                                <img class=" ml-2 h-3 w-3 mr-2 mb-1 inline" src="{{ asset('images/logout.png') }}" </img>
                                 {{ __('messages.logout') }}
                             </x-dropdown-link>
                         </form>
@@ -177,6 +192,8 @@
 
         </div>
 
+
+
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
@@ -184,10 +201,19 @@
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
 
+
+
             <div class="mt-3 space-y-1">
+                {{-- <x-responsive-nav-link :href="route('language.index')">
+                    {{ __('messages.language') }}
+                </x-responsive-nav-link> --}}
+                <x-responsive-nav-link :href="route('settings.index')">
+                    {{ __('messages.setting') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('messages.profile') }}
                 </x-responsive-nav-link>
+
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
@@ -201,6 +227,6 @@
                 </form>
             </div>
         </div>
-        
+
     </div>
 </nav>

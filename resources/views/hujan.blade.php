@@ -12,15 +12,11 @@
                 <div class="md:flex">
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.rainValue') }}</div>
-                        @foreach ($hujan as $items => $item)
-                            @if ($items == 0)
-                                <div id="data-list" class="text-black ml-2">
-                                    <span class="text-[40px]" id="nilaihujan"></span>
-                                </div>
-                            @endif
-                        @endforeach
+                        <div id="data-list" class="text-black">
+                            <span class="text-[40px]" id="nilaihujan"></span>
+                        </div>
                         <p class="mt-5 text-slate-500">{{ __('messages.rainDesc') }}</p>
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div
@@ -28,23 +24,23 @@
                 <div class="md:flex">
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.rainCondition') }}</div>
-                    @foreach ($hujan as $items => $item)
-                            @if ($items == 0)
-                                <div class="text-black ml-2">
-                                    <span class="text-[40px]" id="keadaanhujan"></span>
-                                </div>
-                            @endif
-                        @endforeach
+
+                        <div class="text-black ml-2">
+
+                            <span class="text-[40px]" id="keadaanhujan"></span>
+
+                        </div>
+
                         <p class="mt-5 text-slate-500">{{ __('messages.rainDesc2') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
 
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             setInterval(function() {

@@ -9,6 +9,7 @@ return [
     'humidity' => 'Humidity',
     'rain' => 'Rain',
     'profile' => 'Profile',
+    'setting' => 'Settings',
     'logout' => 'Logout',
     'floodValue' => 'Flood',
     'floodCondition' => 'Flood Condition',
@@ -37,20 +38,27 @@ return [
     'cancel' => 'Cancel',
     'english' => 'English',
     'indonesia' => 'Bahasa',
-
+    
     'language' => 'Language',
-
+    
     
     'floodDesc' => 'Here is the value of the flood sensor results',
     'floodDesc2' => 'Here is the state value of the flood results',
     'tempDesc' => 'Here is the value of the temperature results',
     'tempDesc2' => 'Here is the state value of the temperature results',
-
+    
     'humidityDesc' => 'Here is the value of the humidity results',
     'humidityDesc2' => 'Here is the state value of the humidity results',
-
+    
     'rainDesc' => 'Here is the value of the rain results',
     'rainDesc2' => 'Here is the state value of the rain results',
-]
+    'delete' => 'Delete',
 
-?>
+    'informationSettings' => 'Settings Information',
+    'informationFloodSettings' => 'Flood Settings',
+    'safe' => 'Safe',
+    'warning' => 'Warning',   
+    'danger' => 'Bahaya',   
+    ]
+    
+    ?>
