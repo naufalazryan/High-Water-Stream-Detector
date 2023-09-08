@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sensor;
+use App\Models\SensorData;
 use Illuminate\Http\Request;
 
 class SensorController extends Controller
@@ -19,6 +20,8 @@ class SensorController extends Controller
             'data'=>$data
         ], 200);
     }
+
+ 
 
     /**
      * Store a newly created resource in storage.

@@ -15,8 +15,36 @@ class SensorDataController extends Controller
      */
     public function index()
     {
+
+        $perPage = 5;
+        $orderByColumn = '';
+        $orderByDirection = 'desc';
+
         $data_sensor = DB::table('db_project_building')->paginate(5);
         return view('dashboard', ['data_sensor' => $data_sensor]);
+    }
+
+    public function insertData(Request $request)
+    {
+        // Validate and sanitize input if necessary
+
+        $insertData = [
+            'nilai_banjir' => $request->input('nilai_banjir'),
+            'keadaan_banjir' => $request->input('keadaan_banjir'),
+            'nilai_suhu' => $request->input('nilai_suhu'),
+            'keadaan_suhu' => $request->input('keadaan_suhu'),
+            'nilai_kelembapan' => $request->input('nilai_kelembapan'),
+            'keadaan_kelembapan' => $request->input('keadaan_kelembapan'),
+            'nilai_hujan' => $request->input('nilai_hujan'),
+            'keadaan_hujan' => $request->input('keadaan_hujan'),
+        ];
+
+        // Insert data into the database
+        DB::table('db_project_building')->insert($insertData);
+
+        // Handle success or failure...
+
+        return response()->json(['message' => 'Data inserted successfully']);
     }
 
 
@@ -25,30 +53,29 @@ class SensorDataController extends Controller
 
 
         $output = "";
-        $sensor_data = SensorData::where (
-            'id','like','%'.$request->search.'%')->
-           
-            get();
-            
-            foreach($sensor_data as $row)
-            {
-                $output.=
-                '<tr class="text-black text-center hover:bg-gray-100">
-                    <td class="px-6 py-4">'.$row->id.'</td>
-                    <td class="px-6 py-4">'.$row->nilai_banjir.'</td>
-                    <td class="px-6 py-4">'.$row->keadaan_banjir.'</td>
-                    <td class="px-6 py-4">'.$row->nilai_suhu.'</td>
-                    <td class="px-6 py-4">'.$row->keadaan_suhu.'</td>
-                    <td class="px-6 py-4">'.$row->nilai_kelembapan.'</td>
-                    <td class="px-6 py-4">'.$row->keadaan_kelembapan.'</td>
-                    <td class="px-6 py-4">'.$row->nilai_hujan.'</td>
-                    <td class="px-6 py-4">'.$row->keadaan_hujan.'</td>
-                    <td class="px-6 py-4">'.$row->waktu.'</td>
-                </tr>';
-            }
+        $sensor_data = SensorData::where(
+            'id',
+            'like',
+            '%' . $request->search . '%'
+        )->get();
 
-            return response($output);
-        
+        foreach ($sensor_data as $row) {
+            $output .=
+                '<tr class="text-black text-center hover:bg-gray-100">
+                    <td class="px-6 py-4">' . $row->id . '</td>
+                    <td class="px-6 py-4">' . $row->nilai_banjir . '</td>
+                    <td class="px-6 py-4">' . $row->keadaan_banjir . '</td>
+                    <td class="px-6 py-4">' . $row->nilai_suhu . '</td>
+                    <td class="px-6 py-4">' . $row->keadaan_suhu . '</td>
+                    <td class="px-6 py-4">' . $row->nilai_kelembapan . '</td>
+                    <td class="px-6 py-4">' . $row->keadaan_kelembapan . '</td>
+                    <td class="px-6 py-4">' . $row->nilai_hujan . '</td>
+                    <td class="px-6 py-4">' . $row->keadaan_hujan . '</td>
+                    <td class="px-6 py-4">' . $row->waktu . '</td>
+                </tr>';
+        }
+
+        return response($output);
     }
 
     public function create()
@@ -96,6 +123,6 @@ class SensorDataController extends Controller
         $data = SensorData::find($id);
         $data->delete();
 
-        return response()->json(['success'=>true,'tr' => 'tr_'.$id]);
+        return response()->json(['success' => true, 'tr' => 'tr_' . $id]);
     }
 }

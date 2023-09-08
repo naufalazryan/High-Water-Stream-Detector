@@ -5,6 +5,7 @@ use App\Http\Controllers\BanjirController;
 use App\Http\Controllers\DataEntryController;
 use App\Http\Controllers\HujanController;
 use App\Http\Controllers\KelembapanController;
+use App\Http\Controllers\NodeMcuController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +37,7 @@ Route::group(
         // Localized Routes here **/
         Route::get('/', function () {
             return view('dashboard');
-         });
+        });
 
         Route::get('/dashboard', function () {
             return view('dashboard');
@@ -66,7 +67,6 @@ Route::group(
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-           
         });
 
         Route::get('/', [SensorDataController::class, 'index'])->name('dashboard');
@@ -77,25 +77,27 @@ Route::group(
         Route::get('/hujan', [HujanController::class, 'index'])->name('hujan');
 
         Route::get('lang.edit', [LanguageController::class, 'index'])->name('language');
-        
-        Route::get('/nilaibanjir',[BanjirController::class, 'nilaibanjir']);
-        Route::get('/keadaanbanjir',[BanjirController::class, 'keadaanbanjir']);
 
-        Route::get('/nilaisuhu',[SuhuController::class, 'nilaisuhu']);
-        Route::get('/keadaansuhu',[SuhuController::class, 'keadaansuhu']);
+        Route::get('/nilaibanjir', [BanjirController::class, 'nilaibanjir']);
+        Route::get('/keadaanbanjir', [BanjirController::class, 'keadaanbanjir']);
 
-        Route::get('/nilaikelembapan',[KelembapanController::class, 'nilaikelembapan']);
-        Route::get('/keadaankelembapan',[KelembapanController::class, 'keadaankelembapan']);
+        Route::get('/nilaisuhu', [SuhuController::class, 'nilaisuhu']);
+        Route::get('/keadaansuhu', [SuhuController::class, 'keadaansuhu']);
 
-        Route::get('/nilaihujan',[HujanController::class, 'nilaihujan']);
-        Route::get('/keadaanhujan',[HujanController::class, 'keadaanhujan']);
+        Route::get('/nilaikelembapan', [KelembapanController::class, 'nilaikelembapan']);
+        Route::get('/keadaankelembapan', [KelembapanController::class, 'keadaankelembapan']);
 
-        Route::get('/search',[SensorDataController::class, 'search']);
-        Route::delete('/delete_data/{id}',[SensorDataController::class,'destroy']);
+        Route::get('/nilaihujan', [HujanController::class, 'nilaihujan']);
+        Route::get('/keadaanhujan', [HujanController::class, 'keadaanhujan']);
 
-        Route::get('/settings',[SettingsController::class, 'edit'])->name('settings.index');
+        Route::get('/search', [SensorDataController::class, 'search']);
+        Route::delete('/delete_data/{id}', [SensorDataController::class, 'destroy']);
 
+        Route::get('/settings', [SettingsController::class, 'edit'])->name('settings.index');
+        Route::get('/banjir', [BanjirController::class, 'diagram'])->name('banjir');
+        // routes/web.php or routes/api.php
 
+        Route::post('/insert-data', [SensorDataController::class,'insertData']);
     }
 );
 
