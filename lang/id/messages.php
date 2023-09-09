@@ -34,6 +34,12 @@ return [
     'newPassword' => 'Kata Sandi baru',
     'confirmPassword' => 'Konfirmasi Kata Sandi',
     'passwordSaved' => 'Tersimpan',
+    'forgotPassword' => 'Lupa Kata Sandi ?',
+    'alreadyRegistered' => 'Sudah Terdaftar ?',
+    'remember' => 'Remember Me',
+    'passwordSaved' => 'Simpan',
+    'login' => 'Masuk',
+    'register' => 'Daftar',
     'changePasswordDesc' => 'Setelah akun anda dihapus, semua sumber daya dan datanya akan dihapus secara permanen. Silakan masukkan kata sandi anda untuk mengonfirmasi bahwa Anda ingin menghapus akun anda secara permanen.',
     'confirmChangePassword' => 'Apakah Anda yakin ingin menghapus akun Anda?',
     'deleteAccount' => 'Hapus Akun',
@@ -62,7 +68,12 @@ return [
     'informationFloodSettings' => 'Setting Banjir',
     'safe' => 'Aman',
     'warning' => 'Waspada',   
-    'danger' => 'Bahaya',   
+    'danger' => 'Bahaya',
+    'asc' => 'Naik',
+    'desc' => 'Turun',
+    'ssid' => 'SSID',
+    'server' => 'Server',   
+    'sms' => 'SMS',    
 ]
 
 ?>

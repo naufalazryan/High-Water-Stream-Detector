@@ -114,10 +114,14 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
+
                         <button
                             class="inline-flex items-center px-3 py-2 mt-1 border border-transparent text-sm leading-4 font-medium text-gray-500 hover:bg-gray-50 focus:outline-none focus:ring-offset-1 rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
 
-                            <div>{{ Auth::user()->name }}</div>
+                            @if (auth()->check())
+                                {{ auth()->user()->name }}
+                            @endif
+
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +149,8 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();">
-                                <img class=" ml-2 h-3 w-3 mr-2 mb-1 inline" src="{{ asset('images/logout.png') }}" </img>
+                                <img class=" ml-2 h-3 w-3 mr-2 mb-1 inline" src="{{ asset('images/logout.png') }}"
+                                    </img>
                                 {{ __('messages.logout') }}
                             </x-dropdown-link>
                         </form>
@@ -196,10 +201,18 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
+
+            <!-- Access user-related data here, such as user name -->
+            @auth <!-- Check if the user is authenticated -->
+                <!-- Access user-related data here, such as user name -->
+                <div class="px-4">
+                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                </div>
+            @endauth
+
+
+
 
 
 

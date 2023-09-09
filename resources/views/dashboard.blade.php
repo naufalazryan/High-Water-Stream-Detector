@@ -26,6 +26,21 @@
                     placeholder="Search" />
             </div>
         </div> --}}
+        <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:items-center md:space-x-4 mb-4">
+            <a href="{{ route('dashboard', ['orderBy' => 'id', 'sortDirection' => 'asc']) }}"
+               class="bg-black text-gray-300 py-2 px-4 rounded md:w-auto ml-auto">
+               <img src="{{ asset('images/asc.png')}}" class="w-3" style="display: inline" alt="">
+                {{__('messages.asc')}}
+            </a>
+            
+            <a href="{{ route('dashboard', ['orderBy' => 'id', 'sortDirection' => 'desc']) }}"
+               class="bg-black text-gray-300 py-2 px-4 rounded ml-auto md:w-auto">
+               <img src="{{ asset('images/desc.png')}}" class="w-3" style="display: inline" alt="">
+               {{__('messages.desc')}}
+
+            </a>
+        </div>
+        
 
         <div class="bg-white rounded-lg shadow overflow-x-auto w-full h-full md:w-full">
             <table class="min-w-full divide-y divide-gray-200" id="data-table">
@@ -103,11 +118,10 @@
         </div>
     </div>
 
-    
+
 
     <script type="text/javascript">
-        $('#search').on('keyup',function ()
-        {
+        $('#search').on('keyup', function() {
             $value = $(this).val();
 
             // if($value)
@@ -121,18 +135,19 @@
             // }
 
             $.ajax({
-            type:'get',
-            url:'{{URL::to('search')}}',
-            data:{'search':$value},
-            
-            success:function(data)
-            {
-                console.log(data);
-                $('#content').html(data);
-            }
+                type: 'get',
+                url: '{{ URL::to('search') }}',
+                data: {
+                    'search': $value
+                },
+
+                success: function(data) {
+                    console.log(data);
+                    $('#content').html(data);
+                }
             });
         })
-        </script>
+    </script>
     <script type="text/javascript">
         function deletedata(id) {
 
@@ -165,9 +180,7 @@
 
             }
 
-
-
         }
     </script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </x-app-layout>

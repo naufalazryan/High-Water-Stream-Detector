@@ -36,6 +36,31 @@
                 class="mt-1 block w-full py-2 px-2 text-black" required autofocus autocomplete="danger" />
             {{-- <x-input-error class="mt-2" }}:messages="$errors->get('name')" /> --}}
         </div>
+        <div>
+            <x-input-label for="danger" :value="__('messages.ssid')" />
+            <x-text-input type="text" style="background-color: #F5F5F5"
+                class="mt-1 block w-full py-2 px-2 text-black" required autofocus autocomplete="danger" />
+            {{-- <x-input-error class="mt-2" }}:messages="$errors->get('name')" /> --}}
+        </div>
+
+        <div>
+            <x-input-label for="danger" :value="__('messages.password')" />
+            <x-text-input type="password" style="background-color: #F5F5F5"
+                class="mt-1 block w-full py-2 px-2 text-black" required autofocus autocomplete="danger" />
+            {{-- <x-input-error class="mt-2" }}:messages="$errors->get('name')" /> --}}
+        </div>
+        <div>
+            <x-input-label for="danger" :value="__('messages.server')" />
+            <x-text-input type="text" style="background-color: #F5F5F5"
+                class="mt-1 block w-full py-2 px-2 text-black" required autofocus autocomplete="danger" />
+            {{-- <x-input-error class="mt-2" }}:messages="$errors->get('name')" /> --}}
+        </div>
+        <div>
+            <x-input-label for="danger" :value="__('messages.sms')" />
+            <x-text-input type="text" style="background-color: #F5F5F5"
+                class="mt-1 block w-full py-2 px-2 text-black" required autofocus autocomplete="danger" />
+            {{-- <x-input-error class="mt-2" }}:messages="$errors->get('name')" /> --}}
+        </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('messages.save') }}</x-primary-button>

@@ -47,6 +47,17 @@
             }
         });
     </script>
+    <script>
+        window.onload = function () {
+            const lastVisitedUrl = "{{ session('last_visited_url') }}";
+            const isAuthenticated = "{{ Auth::check() }}";
+    
+            if (!isAuthenticated && lastVisitedUrl) {
+                window.location.href = lastVisitedUrl;
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 {{-- @include('layouts.footer') --}}
 <footer class="footer p-4 bg-white text-gray-500 text-center">

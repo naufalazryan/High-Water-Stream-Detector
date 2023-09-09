@@ -16,35 +16,44 @@ class SensorDataController extends Controller
     public function index()
     {
 
-        $perPage = 5;
-        $orderByColumn = '';
-        $orderByDirection = 'desc';
+        $orderBy = 'id'; // Default sorting column
+        $sortDirection = 'asc'; // Default sorting direction
+        $perPage = 10; // Records per page
 
-        $data_sensor = DB::table('db_project_building')->paginate(5);
-        return view('dashboard', ['data_sensor' => $data_sensor]);
+        if (request()->has('orderBy')) {
+            $orderBy = request('orderBy');
+        }
+
+        if (request()->has('sortDirection')) {
+            $sortDirection = request('sortDirection');
+        }
+
+        $data_sensor = SensorData::orderBy($orderBy, $sortDirection)
+            ->paginate($perPage);
+
+        return view('dashboard', compact('data_sensor'));
     }
 
     public function insertData(Request $request)
     {
-        // Validate and sanitize input if necessary
+        // Assuming you are getting the data from the request
+        $data = $request->all();
 
-        $insertData = [
-            'nilai_banjir' => $request->input('nilai_banjir'),
-            'keadaan_banjir' => $request->input('keadaan_banjir'),
-            'nilai_suhu' => $request->input('nilai_suhu'),
-            'keadaan_suhu' => $request->input('keadaan_suhu'),
-            'nilai_kelembapan' => $request->input('nilai_kelembapan'),
-            'keadaan_kelembapan' => $request->input('keadaan_kelembapan'),
-            'nilai_hujan' => $request->input('nilai_hujan'),
-            'keadaan_hujan' => $request->input('keadaan_hujan'),
-        ];
+        // Create a new instance of the DbProjectBuilding model and set its attributes
+        $sensor_data = new SensorData();
+        $sensor_data->nilai_banjir = $data['nilai_banjir'];
+        $sensor_data->keadaan_banjir = $data['keadaan_banjir'];
+        $sensor_data->nilai_suhu = $data['nilai_suhu'];
+        $sensor_data->keadaan_suhu = $data['keadaan_suhu'];
+        $sensor_data->nilai_kelembapan = $data['nilai_kelembapan'];
+        $sensor_data->keadaan_kelembapan = $data['keadaan_kelembapan'];
+        $sensor_data->nilai_hujan = $data['nilai_hujan'];
+        $sensor_data->keadaan_hujan = $data['keadaan_hujan'];
 
-        // Insert data into the database
-        DB::table('db_project_building')->insert($insertData);
+        // Save the record to the database
+        $sensor_data->save();
 
-        // Handle success or failure...
-
-        return response()->json(['message' => 'Data inserted successfully']);
+        // Handle success or errors here
     }
 
 
