@@ -61,7 +61,7 @@
 </body>
 {{-- @include('layouts.footer') --}}
 <footer class="footer p-4 bg-white text-gray-500 text-center">
-    <p class="text-center">Copyright © SMK Telkom Banjarbaru 2023 - All right reserved</p>
+    <p class="text-center">Copyright © High Water Stream Detector - All right reserved</p>
 </footer>
 
 </html>

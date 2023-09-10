@@ -7,6 +7,7 @@ use App\Models\SensorData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class SensorDataController extends Controller
 {
@@ -15,6 +16,7 @@ class SensorDataController extends Controller
      */
     public function index()
     {
+
 
         $orderBy = 'id'; // Default sorting column
         $sortDirection = 'asc'; // Default sorting direction
@@ -56,6 +58,20 @@ class SensorDataController extends Controller
         // Handle success or errors here
     }
 
+    public function keadaan()
+    {
+        // Ambil data terbaru dari tabel Banjir dan Hujan sesuai dengan urutan DESC dari kolom nilai_banjir dan nilai_hujan
+        $banjir = SensorData::orderBy('nilai_banjir', 'desc')->first(); // Sesuaikan dengan model dan query sesuai dengan database Anda
+        $hujan = SensorData::orderBy('nilai_hujan', 'desc')->first(); // Sesuaikan dengan model dan query sesuai dengan database Anda
+
+        // Periksa keadaan banjir dan hujan
+        $keadaan_banjir = $banjir->keadaan_banjir ?? 'Aman'; // Gantilah 'keadaan_banjir' dengan nama kolom yang sesuai di tabel Banjir
+        $keadaan_hujan = $hujan->keadaan_hujan ?? 'Tidak_Hujan'; // Gantilah 'keadaan_hujan' dengan nama kolom yang sesuai di tabel Hujan
+
+        // Logika Anda di sini
+
+        return view('dashboard', compact('keadaan_banjir', 'keadaan_hujan'));
+    }
 
     public function search(Request $request)
     {

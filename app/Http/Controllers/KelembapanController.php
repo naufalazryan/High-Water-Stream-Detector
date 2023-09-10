@@ -26,11 +26,11 @@ class KelembapanController extends Controller
     }
 
     public function nilaikelembapan(){
-        $nilaikelembapan = SensorData::latest()->value('nilai_kelembapan');
+        $nilaikelembapan =SensorData::orderBy('id', 'DESC')->value('nilai_kelembapan');
         return view('nilaikelembapan', ['nilaiSensorKelembapan' => $nilaikelembapan]);
     }
     public function keadaankelembapan(){
-        $keadaanKelembapan = SensorData::latest()->value('keadaan_kelembapan');
+        $keadaanKelembapan = SensorData::orderBy('id', 'DESC')->value('keadaan_kelembapan');
         return view('keadaankelembapan', ['nilaiKeadaanKelembapan' => $keadaanKelembapan]);
     }
 }

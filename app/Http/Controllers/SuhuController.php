@@ -26,12 +26,12 @@ class SuhuController extends Controller
     }
 
     public function nilaisuhu(){
-        $sensorSuhu = SensorData::latest()->value('nilai_suhu');
+        $sensorSuhu = SensorData::orderBy('id', 'DESC')->value('nilai_suhu');
         return view('nilaisuhu', ['nilaiSensorSuhu' => $sensorSuhu]);
     }
 
     public function keadaansuhu(){
-        $keadaanSuhu = SensorData::latest()->value('keadaan_suhu');
+        $keadaanSuhu = SensorData::orderBy('id', 'DESC')->value('keadaan_suhu');
         return view('keadaansuhu', ['nilaiKeadaanSuhu' => $keadaanSuhu]);
     }
 }

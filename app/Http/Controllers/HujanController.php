@@ -7,7 +7,7 @@ use App\Models\SensorData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class HujanController extends Controller
+class HujanController extends Controller    
 {
     public function index()
     {
@@ -17,13 +17,13 @@ class HujanController extends Controller
     }
 
     public function nilaihujan(){
-        $nilaihujan = SensorData::latest()->value('nilai_hujan');
+        $nilaihujan = SensorData::orderBy('id', 'DESC')->value('nilai_hujan');
         return view('nilaihujan', ['nilaiSensorHujan' => $nilaihujan]);
     }
 
     public function keadaanhujan()
     {
-        $keadaanHujan = SensorData::latest()->value('keadaan_hujan');
+        $keadaanHujan = SensorData::orderBy('id', 'DESC')->value('keadaan_hujan');
         return view('keadaanhujan', ['nilaiKeadaanHujan' => $keadaanHujan]);
     }
 

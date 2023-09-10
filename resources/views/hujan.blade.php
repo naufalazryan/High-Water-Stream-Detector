@@ -12,7 +12,7 @@
                 <div class="md:flex">
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.rainValue') }}</div>
-                        <div id="data-list" class="text-black">
+                        <div class="text-black">
                             <span class="text-[40px]" id="nilaihujan"></span>
                         </div>
                         <p class="mt-5 text-slate-500">{{ __('messages.rainDesc') }}</p>

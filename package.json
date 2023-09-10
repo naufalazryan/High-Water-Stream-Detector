@@ -24,6 +24,7 @@
         "flag-icons": "^6.10.0",
         "lottie-web": "^5.12.2",
         "mysql": "^2.18.1",
-        "socket.io": "^4.7.2"
+        "socket.io": "^4.7.2",
+        "tw-elements": "^1.0.0-rc.1"
     }
 }
