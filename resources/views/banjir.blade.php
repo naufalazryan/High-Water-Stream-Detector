@@ -44,10 +44,9 @@
                 <canvas id="barChart" class="w-full h-full"></canvas>
             </div>
         </div>
+
     </div>
-    <div id="dataTerbaru">
-        <!-- Data terbaru akan ditampilkan di sini -->
-    </div>
+
 
 
 
@@ -73,8 +72,10 @@
                 datasets: [{
                     label: 'Nilai Banjir (cm)',
                     data: values,
-                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: values.map(value => value > 60 ? 'rgba(255, 0, 0, 0.5)' :
+                        'rgba(75, 192, 192, 0.5)'),
+                    borderColor: values.map(value => value > 60 ? 'rgba(255, 0, 0, 1)' :
+                        'rgba(75, 192, 192, 1)'),
                     borderWidth: 1
                 }]
             },
@@ -107,33 +108,40 @@
 
         function updateDataAndChart() {
             $.ajax({
-                url: '/get-latest-data', // Ganti dengan URL sesuai dengan rute Anda
+                url: '/get-latest-data',
                 dataType: 'json',
                 success: function(data) {
-                    // Mengambil data terbaru
                     var latestValue = data.nilai_banjir;
                     var latestTime = data.waktu;
 
+                    // Mengatur warna batang berdasarkan kondisi
+                    var backgroundColor = latestValue > 60 ? 'rgba(255, 0, 0, 0.5)' : 'rgba(75, 192, 192, 0.5)';
+                    var borderColor = latestValue > 60 ? 'rgba(255, 0, 0, 1)' : 'rgba(75, 192, 192, 1)';
+
                     // Memperbarui data pada chart
                     myChart.data.datasets[0].data.push(latestValue);
+                    myChart.data.datasets[0].backgroundColor.push(backgroundColor);
+                    myChart.data.datasets[0].borderColor.push(borderColor);
                     myChart.data.labels.push(latestTime);
 
                     // Hapus data yang lebih dari 24 jam yang lalu
                     if (myChart.data.datasets[0].data.length > 24) {
                         myChart.data.datasets[0].data.shift();
+                        myChart.data.datasets[0].backgroundColor.shift();
+                        myChart.data.datasets[0].borderColor.shift();
                         myChart.data.labels.shift();
                     }
 
                     // Perbarui chart
                     myChart.update();
                 }
-
-
             });
-
-
         }
+
+        // Panggil fungsi updateDataAndChart setiap 1 jam
+        setInterval(updateDataAndChart, 3600000); // 3600000 milidetik = 1 jam
     </script>
+    <!-- Tambahkan tag HTML untuk menampilkan grafik atau informasi lain -->
 
 
 </x-app-layout>

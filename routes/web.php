@@ -104,9 +104,6 @@ Route::group(
             Route::get('/banjir', [BanjirController::class, 'diagram'])->name('banjir');
             Route::get('/get-latest-data', [BanjirController::class, 'getLatestData']);
 
-            
-
-
         });
 
 

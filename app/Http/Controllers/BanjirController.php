@@ -87,4 +87,6 @@ class BanjirController extends Controller
         // Mengirim data sebagai respons JSON
         return response()->json($responseData);
     }
+
+    
 }
