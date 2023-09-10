@@ -73,7 +73,10 @@ return [
     'desc' => 'Descending',
     'ssid' => 'SSID',
     'server' => 'Server',   
-    'sms' => 'SMS',    
+    'sms' => 'SMS',
+    
+    'generatePy' => 'Hasilkan File Phyton',
+    'download' => 'Unduh',
 ]
 
 ?>

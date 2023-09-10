@@ -46,6 +46,7 @@ class SettingsController extends Controller
     {
         return view('settings.index');
     }
+    
     /**
      * Update the specified resource in storage.
      */

@@ -9,6 +9,7 @@ use App\Http\Controllers\HujanController;
 use App\Http\Controllers\KelembapanController;
 use App\Http\Controllers\NodeMcuController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PythonFileController;
 use App\Http\Controllers\SensorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SensorDataController;
@@ -104,6 +105,8 @@ Route::group(
             Route::get('/banjir', [BanjirController::class, 'diagram'])->name('banjir');
             Route::get('/get-latest-data', [BanjirController::class, 'getLatestData']);
 
+            Route::get('/download-phyton-file',[PythonFileController::class, 'downloadPhytonFile']);
+            Route::post('/save-python-script', [PythonFileController::class,'savePythonScript'])->name('save-python-script');
         });
 
 

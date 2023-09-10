@@ -72,6 +72,9 @@ return [
     'ssid' => 'SSID',
     'server' => 'Server',   
     'sms' => 'SMS',   
+
+    'generatePy' => 'Generate Phyton File',
+    'download' => 'Download',
     ]
     
     ?>
