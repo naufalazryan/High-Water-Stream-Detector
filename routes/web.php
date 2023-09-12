@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\BanjirController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DataEntryController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\HujanController;
 use App\Http\Controllers\KelembapanController;
 use App\Http\Controllers\NodeMcuController;
@@ -107,6 +108,9 @@ Route::group(
 
             Route::get('/download-phyton-file',[PythonFileController::class, 'downloadPhytonFile']);
             Route::post('/save-python-script', [PythonFileController::class,'savePythonScript'])->name('save-python-script');
+
+            Route::post('/send-sensor-data-email',[SensorDataController::class,'sendSensorDataEmail'])->name('send.email');
+
         });
 
 

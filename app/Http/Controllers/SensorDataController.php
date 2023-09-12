@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SensorDataMail;
 use App\Models\Sensor;
 use App\Models\SensorData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
@@ -149,5 +151,20 @@ class SensorDataController extends Controller
         $data->delete();
 
         return response()->json(['success' => true, 'tr' => 'tr_' . $id]);
+    }
+
+    public function sendSensorDataEmail(Request $request)
+    {
+        // Ambil data dari model SensorData atau sesuaikan dengan cara Anda
+        $sensorData = SensorData::find($request->sensor_data_id);
+    
+        // Ambil alamat email yang dipilih oleh pengguna
+        $recipientEmail = $request->input('recipient_email');
+    
+        // Kirim email menggunakan kelas Mail
+        Mail::to($recipientEmail)->send(new SensorDataMail($sensorData));
+    
+        // Berikan respons atau alihkan pengguna ke halaman yang sesuai
+        return redirect()->back()->with('success', 'Email telah berhasil dikirim.');
     }
 }
