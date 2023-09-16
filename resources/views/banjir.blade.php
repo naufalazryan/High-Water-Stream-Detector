@@ -44,7 +44,16 @@
                 <canvas id="barChart" class="w-full h-full"></canvas>
             </div>
         </div>
-
+        <div class="text-lg mb-5 text-black font-semibold mt-5">{{ __('messages.averageFloodValue') }}</div>
+        <div class="text-black ml-2">
+        </div>
+        <div class="max-w-md mx-auto bg-white rounded-xl mt-5 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
+            <div class="md:flex">
+                <div class="p-8 text-center">
+                    <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodValue') }}</div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -52,14 +61,17 @@
 
     <script type="text/javascript" src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             setInterval(function() {
                 $("#nilaibanjir").load("{{ url('nilaibanjir') }}");
                 $("#keadaanbanjir").load("{{ url('keadaanbanjir') }}");
+
+                // Ambil data rata-rata banjir dan isi ke elemen dengan ID 'rata-rata-banjir'
             }, 1000);
         });
     </script>
+
     <script>
         var labels = {!! json_encode($labels) !!};
         var values = {!! json_encode($values) !!};
@@ -105,38 +117,6 @@
                 }
             }
         });
-
-        function updateDataAndChart() {
-            $.ajax({
-                url: '/get-latest-data',
-                dataType: 'json',
-                success: function(data) {
-                    var latestValue = data.nilai_banjir;
-                    var latestTime = data.waktu;
-
-                    // Mengatur warna batang berdasarkan kondisi
-                    var backgroundColor = latestValue > 60 ? 'rgba(255, 0, 0, 0.5)' : 'rgba(75, 192, 192, 0.5)';
-                    var borderColor = latestValue > 60 ? 'rgba(255, 0, 0, 1)' : 'rgba(75, 192, 192, 1)';
-
-                    // Memperbarui data pada chart
-                    myChart.data.datasets[0].data.push(latestValue);
-                    myChart.data.datasets[0].backgroundColor.push(backgroundColor);
-                    myChart.data.datasets[0].borderColor.push(borderColor);
-                    myChart.data.labels.push(latestTime);
-
-                    // Hapus data yang lebih dari 24 jam yang lalu
-                    if (myChart.data.datasets[0].data.length > 24) {
-                        myChart.data.datasets[0].data.shift();
-                        myChart.data.datasets[0].backgroundColor.shift();
-                        myChart.data.datasets[0].borderColor.shift();
-                        myChart.data.labels.shift();
-                    }
-
-                    // Perbarui chart
-                    myChart.update();
-                }
-            });
-        }
 
         // Panggil fungsi updateDataAndChart setiap 1 jam
         setInterval(updateDataAndChart, 3600000); // 3600000 milidetik = 1 jam

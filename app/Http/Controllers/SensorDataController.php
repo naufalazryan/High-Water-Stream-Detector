@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SensorDataEmail;
 use App\Mail\SensorDataMail;
 use App\Models\Sensor;
 use App\Models\SensorData;
@@ -21,8 +22,8 @@ class SensorDataController extends Controller
 
 
         $orderBy = 'id'; // Default sorting column
-        $sortDirection = 'asc'; // Default sorting direction
-        $perPage = 10; // Records per page
+        $sortDirection = 'desc'; // Default sorting direction
+        $perPage = 6; // Records per page
 
         if (request()->has('orderBy')) {
             $orderBy = request('orderBy');
@@ -115,8 +116,28 @@ class SensorDataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'data' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $latestSensorData = SensorData::orderBy('created_at', 'desc')->first();
+
+        if ($latestSensorData) {
+            $emailData = [
+                'data' => $latestSensorData->data,
+            ];
+
+            $email = new SensorDataEmail($emailData);
+            Mail::to($request->input('email'))->send($email);
+
+            return redirect()->route('sensor-data.create')->with('success', 'Data sensor terbaru telah dikirimkan ke alamat email yang ditentukan.');
+        } else {
+            return redirect()->route('sensor-data.create')->with('error', 'Tidak ada data sensor yang tersedia.');
+        }
     }
+
+
 
     /**
      * Display the specified resource.
@@ -151,20 +172,5 @@ class SensorDataController extends Controller
         $data->delete();
 
         return response()->json(['success' => true, 'tr' => 'tr_' . $id]);
-    }
-
-    public function sendSensorDataEmail(Request $request)
-    {
-        // Ambil data dari model SensorData atau sesuaikan dengan cara Anda
-        $sensorData = SensorData::find($request->sensor_data_id);
-    
-        // Ambil alamat email yang dipilih oleh pengguna
-        $recipientEmail = $request->input('recipient_email');
-    
-        // Kirim email menggunakan kelas Mail
-        Mail::to($recipientEmail)->send(new SensorDataMail($sensorData));
-    
-        // Berikan respons atau alihkan pengguna ke halaman yang sesuai
-        return redirect()->back()->with('success', 'Email telah berhasil dikirim.');
     }
 }

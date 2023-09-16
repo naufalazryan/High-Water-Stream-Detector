@@ -77,6 +77,9 @@ return [
     
     'generatePy' => 'Hasilkan File Phyton',
     'download' => 'Unduh',
+    'template' => 'Kode Templat',
+    'templatePy' => 'Template Phyton File',
+    'averageFloodValue' => 'Rata Rata Nilai Banjir',
 ]
 
 ?>

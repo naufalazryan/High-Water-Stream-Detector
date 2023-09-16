@@ -9,18 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SensorDataMail extends Mailable
+class SensorDataEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $sensorData;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($sensorData)
+    public function __construct()
     {
-        $this->sensorData = $sensorData;
+        //
     }
 
     /**
@@ -29,7 +27,7 @@ class SensorDataMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Sensor Data Mail',
+            subject: 'Sensor Data Email',
         );
     }
 
@@ -51,12 +49,5 @@ class SensorDataMail extends Mailable
     public function attachments(): array
     {
         return [];
-    }
-
-    public function build()
-    {
-        return $this->view('settings.partials.script') // Sesuaikan dengan nama view Anda
-                    ->subject('Data Sensor') // Subjek email
-                    ->with(['sensorData' => $this->sensorData]);
     }
 }

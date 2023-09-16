@@ -6,6 +6,7 @@ use App\Http\Controllers\BanjirController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DataEntryController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\HujanController;
 use App\Http\Controllers\KelembapanController;
 use App\Http\Controllers\NodeMcuController;
@@ -85,6 +86,7 @@ Route::group(
 
             Route::get('/nilaibanjir', [BanjirController::class, 'nilaibanjir']);
             Route::get('/keadaanbanjir', [BanjirController::class, 'keadaanbanjir']);
+            Route::get('/ratabanjir', [BanjirController::class, 'rataRataBanjir']);
 
             Route::get('/nilaisuhu', [SuhuController::class, 'nilaisuhu']);
             Route::get('/keadaansuhu', [SuhuController::class, 'keadaansuhu']);
@@ -106,11 +108,16 @@ Route::group(
             Route::get('/banjir', [BanjirController::class, 'diagram'])->name('banjir');
             Route::get('/get-latest-data', [BanjirController::class, 'getLatestData']);
 
-            Route::get('/download-phyton-file',[PythonFileController::class, 'downloadPhytonFile']);
-            Route::post('/save-python-script', [PythonFileController::class,'savePythonScript'])->name('save-python-script');
+            Route::post('/save-python-script', [PythonFileController::class, 'savePythonScript'])->name('save-python-script');
 
-            Route::post('/send-sensor-data-email',[SensorDataController::class,'sendSensorDataEmail'])->name('send.email');
+            Route::get('/sensor-data', [SensorDataController::class, 'create'])->name('sensor-data.create');
+            Route::post('/sensor-data', [SensorDataController::class, 'store'])->name('sensor-data.store');
 
+            Route::post('/download-python-template', [PythonFileController::class, 'downloadTemplate'])->name('download.python.template');
+
+            Route::get('/export-sensor-data', [ExportController::class,'export'])->name('export.sensor_data');
+    
+            
         });
 
 

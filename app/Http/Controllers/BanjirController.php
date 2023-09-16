@@ -10,23 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class BanjirController extends Controller
 {
-    public function index()
-    {
-        $banjir = SensorData::orderBy('id', 'desc')->get();
 
-        if ($banjir) {
-            // Access attributes
-            $nilaiBanjir = $banjir->nilai_banjir;
-            $keadaanBanjir = $banjir->keadaan_banjir;
-
-            return view('banjir', [
-                'nilaiBanjir' => $nilaiBanjir,
-                'keadaanBanjir' => $keadaanBanjir,
-            ]);
-        } else {
-            return view('banjir');
-        }
-    }
 
     public function nilaibanjir()
     {
@@ -40,37 +24,37 @@ class BanjirController extends Controller
         return view('keadaanbanjir', ['nilaiKeadaanBanjir' => $keadaanBanjir]);
     }
 
-
+    
     public function diagram()
-{
-    // Mengambil semua data sensor dari database
-    $data = SensorData::orderBy('waktu', 'desc')->get();
+    {
+        // Mengambil semua data sensor dari database
+        $data = SensorData::orderBy('waktu', 'desc')->get();
 
-    // Memisahkan data menjadi labels (waktu) dan values (nilai_banjir)
-    $labels = [];
-    $values = [];
+        // Memisahkan data menjadi labels (waktu) dan values (nilai_banjir)
+        $labels = [];
+        $values = [];
 
-    $previousHour = null; // Inisialisasi jam sebelumnya
+        $previousHour = null; // Inisialisasi jam sebelumnya
 
-    foreach ($data as $item) {
-        // Memisahkan waktu menjadi jam
-        $waktu = strtotime($item->waktu);
-        $formatJam = date('H:00', $waktu);
+        foreach ($data as $item) {
+            // Memisahkan waktu menjadi jam
+            $waktu = strtotime($item->waktu);
+            $formatJam = date('H:00', $waktu);
 
-        // Jika jam saat ini berbeda dari jam sebelumnya
-        if ($formatJam !== $previousHour) {
-            // Tambahkan label waktu saat ini ke dalam $labels
-            $labels[] = $formatJam;
-            $values[] = $item->nilai_banjir;
+            // Jika jam saat ini berbeda dari jam sebelumnya
+            if ($formatJam !== $previousHour) {
+                // Tambahkan label waktu saat ini ke dalam $labels
+                $labels[] = $formatJam;
+                $values[] = $item->nilai_banjir;
+            }
+
+            // Simpan jam saat ini sebagai jam sebelumnya
+            $previousHour = $formatJam;
         }
 
-        // Simpan jam saat ini sebagai jam sebelumnya
-        $previousHour = $formatJam;
+        // Kirim data ke view 'banjir.blade.php'
+        return view('banjir', compact('labels', 'values'));
     }
-
-    // Kirim data ke view 'banjir.blade.php'
-    return view('banjir', compact('labels', 'values'));
-}
 
 
     public function getLatestData()
@@ -87,6 +71,4 @@ class BanjirController extends Controller
         // Mengirim data sebagai respons JSON
         return response()->json($responseData);
     }
-
-    
 }

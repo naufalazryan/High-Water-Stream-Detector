@@ -1,6 +1,8 @@
 
 <x-guest-layout>
     <!-- Session Status -->
+    {{-- <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" /> --}}
+    <script src="https://cdn.tailwindcss.com"></script>
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">

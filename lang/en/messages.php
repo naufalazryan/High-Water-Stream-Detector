@@ -74,7 +74,10 @@ return [
     'sms' => 'SMS',   
 
     'generatePy' => 'Generate Phyton File',
+    'templatePy' => 'Template Phyton File',
     'download' => 'Download',
+    'template' => 'Template Code',
+    'averageFloodValue' => 'Average Flood Value',
     ]
     
     ?>
