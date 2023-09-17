@@ -87,7 +87,7 @@ Route::group(
 
             Route::get('/nilaibanjir', [BanjirController::class, 'nilaibanjir']);
             Route::get('/keadaanbanjir', [BanjirController::class, 'keadaanbanjir']);
-            Route::get('/nilairataratabanjir', [BanjirController::class, 'calculateAverageBanjir']);
+            Route::get('/nilairataratabanjir', [BanjirController::class, 'calculateAverageBanjir'])->name('calculateAverageBanjir');
 
             Route::get('/nilaisuhu', [SuhuController::class, 'nilaisuhu']);
             Route::get('/keadaansuhu', [SuhuController::class, 'keadaansuhu']);

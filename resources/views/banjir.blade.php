@@ -70,11 +70,26 @@
         });
     </script>
     <script>
-        $("#rata-rata-banjir").load("{{ url('nilairataratabanjir') }}", function(responseText) {
-            var rataRata = parseFloat(responseText);
-            if (!isNaN(rataRata)) {
-                $("#rata-rata-banjir").text(rataRata.toFixed(2) + ' cm');
+        $(document).ready(function() {
+            // Fungsi untuk memuat rata-rata banjir dari server dan menampilkannya
+            function loadAndDisplayAverage() {
+                $.get("{{ route('calculateAverageBanjir') }}", function(data) {
+                    if (data && data.average !== undefined) {
+                        var rataRata = parseFloat(data.average);
+                        if (!isNaN(rataRata)) {
+                            $("#rata-rata-banjir").text(rataRata.toFixed(2) + ' cm');
+                        }
+                    }
+                });
             }
+
+            // Memuat rata-rata banjir saat halaman pertama kali dimuat
+            loadAndDisplayAverage();
+
+            // Memuat ulang rata-rata banjir setiap 60 detik (atau sesuai dengan kebutuhan Anda)
+            setInterval(function() {
+                loadAndDisplayAverage();
+            }, 60000); // Contoh: memuat ulang setiap 60 detik (sesuaikan sesuai kebutuhan)
         });
     </script>
     <script>

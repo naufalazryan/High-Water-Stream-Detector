@@ -58,28 +58,18 @@ class BanjirController extends Controller
         return view('banjir', compact('labels', 'values'));
     }
 
-public function calculateAverageBanjir()
-{
-    // Ambil 7 data nilai_banjir terbaru dalam 24 jam terakhir
-    $sensorData = SensorData::where('waktu', '>=', Carbon::now()->subDay())
-        ->orderBy('waktu', 'desc')
-        ->take(7)
-        ->get();
-
-    // Inisialisasi variabel untuk menyimpan total nilai
-    $totalNilai = 0;
-
-    // Loop melalui semua data SensorData
-    foreach ($sensorData as $data) {
-        $totalNilai += $data->nilai_banjir;
+    public function calculateAverageBanjir()
+    {
+        // Query database untuk mengambil nilai rata-rata dari data nilai_banjir terbaru
+        $average = DB::table('db_project_building')
+            ->orderBy('waktu', 'desc') // Urutkan berdasarkan waktu terbaru
+            ->limit(10) // Ambil 10 data terbaru
+            ->avg('nilai_banjir'); // Hitung nilai rata-ratanya
+    
+        // Kembalikan nilai rata-rata dalam format JSON
+        return response()->json(['average' => $average]);
     }
 
-    // Hitung rata-rata
-    $rataRataBanjir = ($sensorData->count() > 0) ? ($totalNilai / $sensorData->count()) : 0;
-
-    // Kembalikan nilai rata-rata dalam format yang sesuai (misalnya dalam centimeter)
-    return response()->json(['average' => $rataRataBanjir]);
-}
 
     public function getLatestData()
     {
