@@ -13,7 +13,7 @@
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.rainValue') }}</div>
                         <div class="text-black">
-                            <span class="text-[40px]" id="nilaihujan"></span>
+                            <span class="text-[35px]" id="nilaihujan"></span>
                         </div>
                         <p class="mt-5 text-slate-500">{{ __('messages.rainDesc') }}</p>
                     </div>
@@ -27,7 +27,7 @@
 
                         <div class="text-black ml-2">
 
-                            <span class="text-[40px]" id="keadaanhujan"></span>
+                            <span class="text-[35px]" id="keadaanhujan"></span>
 
                         </div>
 

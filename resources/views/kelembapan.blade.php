@@ -15,7 +15,7 @@
                         {{-- @foreach ($nilaiKelembapan as $items => $item)
                             @if ($items == 0) --}}
                                 <div class="text-black ml-2">
-                                    <span class="text-[40px]" id="nilaikelembapan"></span>
+                                    <span class="text-[35px]" id="nilaikelembapan"></span>
                                     <span class="align-top text-sm">%</span>
                                 </div>
                             {{-- @endif
@@ -30,7 +30,7 @@
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.humidityCondition') }}</div>
                      
                                 <div class="text-black ml-2">
-                                    <span class="text-[40px]" id="keadaankelembapan"></span>
+                                    <span class="text-[35px]" id="keadaankelembapan"></span>
                                 </div>
 
                         <p class="mt-5 text-slate-500">{{ __('messages.humidityDesc2') }}</p>

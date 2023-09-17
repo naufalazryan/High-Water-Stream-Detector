@@ -13,6 +13,7 @@ return [
     'logout' => 'Logout',
     'floodValue' => 'Flood',
     'floodCondition' => 'Flood Condition',
+    'floodAverage' => 'Flood Average',
     'temperatureValue' => 'Temperature',
     'temperatureCondition' => 'Temperature Condition',
     'humidityValue' => 'Humidity',
@@ -49,6 +50,8 @@ return [
     
     'floodDesc' => 'Here is the value of the flood sensor results',
     'floodDesc2' => 'Here is the state value of the flood results',
+    'floodDesc3' => 'Here is the average flood yield value',
+
     'tempDesc' => 'Here is the value of the temperature results',
     'tempDesc2' => 'Here is the state value of the temperature results',
     

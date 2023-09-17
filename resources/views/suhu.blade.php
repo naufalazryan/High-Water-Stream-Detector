@@ -14,7 +14,7 @@
                        
                             <div class="text-black ml-2">
                               
-                                <span class="text-[40px]" id="nilaiSuhu"></span> 
+                                <span class="text-[35px]" id="nilaiSuhu"></span> 
                                 <span class="align-top text-sm">°C</span>
             
                             </div>
@@ -29,7 +29,7 @@
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.temperatureCondition') }}</div>
 
                             <div class="text-black ml-2">
-                                <span class="text-[40px]" id="keadaanSuhu"></span>
+                                <span class="text-[35px]" id="keadaanSuhu"></span>
                             </div>
 
                         <p class="mt-5 text-slate-500">{{ __('messages.tempDesc2') }}</p>

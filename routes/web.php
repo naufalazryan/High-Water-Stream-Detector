@@ -18,6 +18,7 @@ use App\Http\Controllers\SensorDataController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\SuhuController;
 use App\Models\DataSuhu;
+use League\CommonMark\Extension\CommonMark\Parser\Inline\BangParser;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 /*
 |--------------------------------------------------------------------------
@@ -86,7 +87,7 @@ Route::group(
 
             Route::get('/nilaibanjir', [BanjirController::class, 'nilaibanjir']);
             Route::get('/keadaanbanjir', [BanjirController::class, 'keadaanbanjir']);
-            Route::get('/ratabanjir', [BanjirController::class, 'rataRataBanjir']);
+            Route::get('/nilairataratabanjir', [BanjirController::class, 'calculateAverageBanjir']);
 
             Route::get('/nilaisuhu', [SuhuController::class, 'nilaisuhu']);
             Route::get('/keadaansuhu', [SuhuController::class, 'keadaansuhu']);
@@ -116,7 +117,11 @@ Route::group(
             Route::post('/download-python-template', [PythonFileController::class, 'downloadTemplate'])->name('download.python.template');
 
             Route::get('/export-sensor-data', [ExportController::class,'export'])->name('export.sensor_data');
-    
+
+
+
+            
+
             
         });
 

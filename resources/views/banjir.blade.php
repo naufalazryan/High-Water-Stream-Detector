@@ -5,18 +5,15 @@
         </h2>
     </x-slot>
     <div class="flex justify-center mb-6">
-        <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
-
+        <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             <div
                 class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
                 <div class="md:flex">
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodValue') }}</div>
-
                         <div class="text-black ml-2">
                             <span class="text-[40px]" id="nilaibanjir"></span>
                         </div>
-
                         <p class="mt-5 text-slate-500">{{ __('messages.floodDesc') }}</p>
                     </div>
                 </div>
@@ -26,32 +23,33 @@
                 <div class="md:flex">
                     <div class="p-8 text-center">
                         <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodCondition') }}</div>
-
                         <div class="text-black ml-2">
                             <span class="text-[40px]" id="keadaanbanjir"></span>
                         </div>
-
+                        <p class="mt-5 text-slate-500">{{ __('messages.floodDesc2') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="max-w-md mx-auto bg-white rounded-xl mt-10 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
+                <div class="md:flex">
+                    <div class="p-8 text-center">
+                        <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodCondition') }}</div>
+                        <div class="text-black ml-2">
+                            <span class="text-[40px]" id="rata-rata-banjir"></span>
+                        </div>
                         <p class="mt-5 text-slate-500">{{ __('messages.floodDesc2') }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="container mx-auto my-auto p-4">
         <div class="bg-white shadow-lg p-4 rounded-lg">
             <h1 class="text-2xl font-semibold mb-4">Diagram Banjir</h1>
             <div class="relative" style="height: 400px;">
                 <canvas id="barChart" class="w-full h-full"></canvas>
-            </div>
-        </div>
-        <div class="text-lg mb-5 text-black font-semibold mt-5">{{ __('messages.averageFloodValue') }}</div>
-        <div class="text-black ml-2">
-        </div>
-        <div class="max-w-md mx-auto bg-white rounded-xl mt-5 md:mt-10 shadow-md overflow-hidden md:max-w-2x1 md:pl-5">
-            <div class="md:flex">
-                <div class="p-8 text-center">
-                    <div class="text-lg mb-5 text-black font-semibold">{{ __('messages.floodValue') }}</div>
-                </div>
             </div>
         </div>
     </div>
@@ -71,7 +69,14 @@
             }, 1000);
         });
     </script>
-
+    <script>
+        $("#rata-rata-banjir").load("{{ url('nilairataratabanjir') }}", function(responseText) {
+            var rataRata = parseFloat(responseText);
+            if (!isNaN(rataRata)) {
+                $("#rata-rata-banjir").text(rataRata.toFixed(2) + ' cm');
+            }
+        });
+    </script>
     <script>
         var labels = {!! json_encode($labels) !!};
         var values = {!! json_encode($values) !!};

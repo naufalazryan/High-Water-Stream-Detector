@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BanjirController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\SensorController;
 use App\Models\Sensor;
@@ -34,5 +35,3 @@ Route::post('registerUser',[AuthController::class,'registerUser']);
 Route::post('loginUser',[AuthController::class,'loginUser']);
 
 Route::get('/export-data', [ExportController::class, 'export'])->name('export.data');
-
-

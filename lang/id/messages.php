@@ -13,6 +13,7 @@ return [
     'logout' => 'Keluar',
     'floodValue' => 'Nilai Banjir',
     'floodCondition' => 'Keadaan Banjir',
+    'floodAverage' => 'Rata Rata Banjir',
     'temperatureValue' => 'Nilai Suhu',
     'temperatureCondition' => 'Keadaan Suhu',
     'humidityValue' => 'Kelembapan',
@@ -51,16 +52,17 @@ return [
     'language' => 'Bahasa',
 
     'floodDesc' => 'Berikut adalah nilai hasil sensor banjir',
-    'floodDesc2' => 'berikut adalah adalah nilai hasil keadaan banjir',
+    'floodDesc2' => 'Berikut adalah adalah nilai hasil keadaan banjir',
+    'floodDesc3' => 'Berikut adalah adalah nilai hasil rata rata banjir',
 
-    'tempDesc' => 'berikut adalah adalah nilai hasil sensor temperatur',
-    'floodDesc2' => 'berikut adalah adalah nilai hasil keadaan temperatur',
+    'tempDesc' => 'Berikut adalah adalah nilai hasil sensor temperatur',
+    'floodDesc2' => 'Berikut adalah adalah nilai hasil keadaan temperatur',
 
-    'humidityDesc' => 'berikut adalah adalah nilai hasil sensor kelembapan',
-    'humidityDesc2' => 'berikut adalah adalah nilai hasil keadaan kelembapan',
+    'humidityDesc' => 'Berikut adalah adalah nilai hasil sensor kelembapan',
+    'humidityDesc2' => 'Berikut adalah adalah nilai hasil keadaan kelembapan',
 
-    'rainDesc' => 'berikut adalah adalah nilai hasil sensor hujan',
-    'rainDesc2' => 'berikut adalah adalah nilai hasil keadaan hujan',
+    'rainDesc' => 'Berikut adalah adalah nilai hasil sensor hujan',
+    'rainDesc2' => 'Berikut adalah adalah nilai hasil keadaan hujan',
 
     'delete' => 'Hapus',
 
