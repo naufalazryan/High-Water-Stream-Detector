@@ -8,7 +8,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="https://smktelkom-bjb.sch.id/web/assets/img/logo.png" class="w-20" alt="">
+                        <img src="{{ asset('images/bg.png')}}" class="w-20 mt-1" alt="">
                     </a>
                 </div>
 
